@@ -2,7 +2,7 @@ name: Second workflow
 on: push
 jobs:
 
-  build-and-run:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Get code
@@ -11,5 +11,12 @@ jobs:
         run: python3 -v
       - name: Install python package
         run: python3 -m pip install -r requirements.txt
-      - name: Run app
+  
+  run:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Run python script
         run: python3 main.py
