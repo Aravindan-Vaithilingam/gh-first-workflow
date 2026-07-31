@@ -8,6 +8,9 @@ on:
     branches:
       - 'dev-*'
       - 'feat/**'
+    paths:
+      - '.github/workflows/*'
+      
 
 jobs:
   deploy:
