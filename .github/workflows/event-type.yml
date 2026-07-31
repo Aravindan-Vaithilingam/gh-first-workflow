@@ -1,0 +1,14 @@
+name: Event demo 1
+on:
+  pull_request:
+    types:
+      - opened
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-slim
+    steps:
+      - name: Deploy
+        run: echo "Deployed!"
+    
