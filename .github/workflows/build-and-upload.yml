@@ -16,7 +16,7 @@ jobs:
       - name: Build code
         run: zip package.zip main.py
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           path: |
             package.zip
