@@ -24,6 +24,13 @@ jobs:
     runs-on: ubuntu-slim
     needs: build
     steps:
+      - name: Download artifact 
+        uses: actions/download-artifact@v8
+        with:
+          path: |
+            package.zip
+      - name: Output
+        run: ls
       - name: Get code
         uses: actions/checkout@v3
       - name: Run python script
