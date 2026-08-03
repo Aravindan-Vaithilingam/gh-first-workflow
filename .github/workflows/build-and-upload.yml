@@ -1,0 +1,30 @@
+name: Build and deploy
+on: [push,workflow_dispatch]
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install package
+        run: sudo apt install zip unzip
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: python version
+        run: python3 -v
+      - name: Install python package
+        run: python3 -m pip install -r requirements.txt
+      - name: Build code
+        run: zip package.zip main.py
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          path: |
+            package.zip
+  run:
+    runs-on: ubuntu-slim
+    needs: build
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Run python script
+        run: python3 main.py
