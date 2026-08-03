@@ -13,6 +13,13 @@ jobs:
         uses: actions/checkout@v3
       - name: python version
         run: python3 -v
+      - name: Cache dependenices
+        uses: actions/cache@v5
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
       - name: Install python package
         run: python3 -m pip install -r requirements.txt
       - name: Build code
