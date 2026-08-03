@@ -35,7 +35,7 @@ jobs:
           path: |
             package.zip
       - name: Output
-        run: ls
+        run: ls && echo "${{ needs.build.outputs.script-file }}"
       - name: Get code
         uses: actions/checkout@v3
       - name: Run python script
